@@ -16,14 +16,29 @@ public class Database {
 
 	}
 
-	public void checkUsernameInDatabase() {
-		start.enterYourUsername();
-		boolean isavailable = hm.containsKey(start.username);
-		if (isavailable) {
+	public void checkEmailInDatabase() {
+		//start.enterYourEmail();
+		boolean isavailable = hm.containsKey(start.email);
+		if (!isavailable) {
 			start.enterYourPassword();
 		} else {
-		System.out.println("your username is invalid ");
-		checkUsernameInDatabase();
+		System.out.println("your email is invalid ");
+		start.enterYourEmail();
+		start.checkEmailIsValid();
+		checkEmailInDatabase();
+		}
+	}
+	
+	public void checkPasswordInDatabase() {
+		start.enterYourPassword();;
+		boolean isavailable = hm.containsValue(start.password);
+		if (isavailable) {
+			checkPasswordInDatabase();
+		} else {
+		if (start.password.equals(hm.get(start.email))){
+			System.out.println("you have  successfully log in ");
+		}
+		checkPasswordInDatabase();
 		}
 	}
 }
