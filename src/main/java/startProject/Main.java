@@ -7,9 +7,11 @@ public class Main {
 		Database database = new Database();
 		
 		start.enterYourEmail();
-		start.checkEmailIsValid();
+		start.checkEmailValidation();
+		database.checkEmailInDatabase();
 		start.enterYourPassword();
-		start.checkPasswordIsValid();
+		start.checkPasswordValidation();
+		database.checkPasswordInDatabase();
 		
 
 	   /* Set<Entry<String, String>> st = database.hm.entrySet();
@@ -23,7 +25,5 @@ public class Main {
 		database.checkPasswordInDatabase();
 
 	}*/
-		database.checkEmailInDatabase();
-		database.checkPasswordInDatabase();
-}
+	}		
 }

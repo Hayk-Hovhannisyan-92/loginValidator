@@ -17,28 +17,38 @@ public class Database {
 	}
 
 	public void checkEmailInDatabase() {
-		//start.enterYourEmail();
 		boolean isavailable = hm.containsKey(start.email);
-		if (!isavailable) {
-			start.enterYourPassword();
+		if (isavailable) {
+			System.out.println();
 		} else {
-		System.out.println("your email is invalid ");
-		start.enterYourEmail();
-		start.checkEmailIsValid();
-		checkEmailInDatabase();
+			System.out.println("your email is not registered ");
+			start.enterYourEmail();
+			start.checkEmailValidation();
+			checkEmailInDatabase();
 		}
 	}
-	
+
 	public void checkPasswordInDatabase() {
-		start.enterYourPassword();;
 		boolean isavailable = hm.containsValue(start.password);
-		if (isavailable) {
+		if (!isavailable) {
+			System.out.println("Your email or password is invalid ");
+			start.enterYourEmail();
+			start.checkEmailValidation();
+			checkEmailInDatabase();
+			start.enterYourPassword();
+			start.checkPasswordValidation();
 			checkPasswordInDatabase();
 		} else {
-		if (start.password.equals(hm.get(start.email))){
-			System.out.println("you have  successfully log in ");
-		}
-		checkPasswordInDatabase();
+			if (start.password.equals(hm.get(start.email))) {
+				System.out.println("you have  successfully log in ");
+			}
+			System.out.println("Your email or password is invalid ");
+			start.enterYourEmail();
+			start.checkEmailValidation();
+			checkEmailInDatabase();
+			start.enterYourPassword();
+			start.checkPasswordValidation();
+			checkPasswordInDatabase();
 		}
 	}
 }

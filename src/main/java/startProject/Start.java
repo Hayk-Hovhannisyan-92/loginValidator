@@ -17,78 +17,59 @@ public class Start {
 
 	}
 
-	public final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z]+\\.[A-Z]",
+	public final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z]+.[A-Z]",
 			Pattern.CASE_INSENSITIVE);
+	Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher("start.email");
+	boolean boolEmail = matcherEmail.matches();
 
-	public boolean checkEmailRegex() {
-		return VALID_EMAIL_ADDRESS_REGEX.matcher(password).find();
-	}
-
-	public void checkEmailIsValid() {
+	public void checkEmailValidation() {
 		if (email.isEmpty()) {
 			System.out.println("email is empty ");
 			enterYourEmail();
-			checkEmailIsValid();
+			checkEmailValidation();
 		}
-		if (checkEmailRegex()) {
-			System.out.println("Correct!");
+		if (boolEmail) {
+			System.out.println();
 		} else {
 			System.out.println("your email is invalid ");
 			enterYourEmail();
-			checkEmailIsValid();
+			checkEmailValidation();
 		}
 	}
 
-	public final Pattern VALID_PASSWORD_REGEX = Pattern.compile("^[A-Za-z0-9._%+-]");
+	public final Pattern VALID_PASSWORD_REGEX = Pattern.compile("^[A-Z]+[0-9]+[a-z]+[.@$%+_]");
+	Matcher matcherPassword = VALID_PASSWORD_REGEX.matcher("start.password");
+	boolean boolPassword = matcherPassword.matches();
 
 	public void enterYourPassword() {
 		System.out.print("Enter your password -- ");
 		password = in.nextLine();
 	}
 
-	/*
-	char[] pass = new char[0];
-
-	public void dividePassword() {
-		while (password != null) {
-			for (int i = 0; i < pass.length; i++) {
-				pass[i] = password.charAt(0);
-				password = password.substring(1);
-			}
-		}
-	}
-		*/
-
-
-	public boolean checkCharSequencePassword() {
-		return VALID_PASSWORD_REGEX.matcher(password).find();
-	}
-
-	public void checkPasswordIsValid() {
+	public void checkPasswordValidation() {
 		if (password.isEmpty()) {
 			System.out.println("your password is empty  ");
 			enterYourPassword();
-			checkPasswordIsValid();
-		} else
-			//dividePassword();
-
-		if (password.length() < 8) {
+			checkPasswordValidation();
+		} else {if (password.length() < 8) {
 			System.out.println("Password is too short ");
 			enterYourPassword();
-			checkPasswordIsValid();
+			checkPasswordValidation();
 		} else {
 			if (password.length() > 12) {
 				System.out.println("Password is too long ");
 				enterYourPassword();
-				checkPasswordIsValid();
+				checkPasswordValidation();
 			} else {
-				if (!checkCharSequencePassword()) {
+				if (!boolPassword) {
 					System.out.println("Password  is not strong enough ");
 					enterYourPassword();
-					checkPasswordIsValid();
+					checkPasswordValidation();
+				} else {
+					System.out.println();
 				}
-				System.out.println("Correct!");
 			}
 		}
 	}
+}
 }
