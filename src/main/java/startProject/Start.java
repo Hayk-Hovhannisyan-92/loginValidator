@@ -6,70 +6,66 @@ import java.util.regex.Pattern;
 
 public class Start {
 
-	public String email;
-	public String password;
-
 	Scanner in = new Scanner(System.in);
 
-	public String regexEmail = "^[A-Z0-9._%+-]+@[A-Z]+.[A-Z]";
-	public final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
-	Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher("email");
-	boolean boolEmail = matcherEmail.matches();
-
-	public void enterYourEmail() {
+	public String enterYourEmail() {
 		System.out.print("Enter your email  -- ");
-		email = in.nextLine();
-
-	}
-
-	public void checkEmailValidation() {
+		String email = in.nextLine();
 		if (email.isEmpty()) {
 			System.out.println("email is empty ");
-			enterYourEmail();
-			checkEmailValidation();
+			email = enterYourEmail();
 		}
+		return email;
+
+	}
+
+	public void checkEmailValidation(String email) {
+		String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
+		Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
+
+		Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+		boolean boolEmail = matcherEmail.matches();
+
 		if (boolEmail) {
-			System.out.println();
+		} else {
+			System.out.println("your email is invalid ");
+			email = enterYourEmail();
+			checkEmailValidation(email);
 		}
-		System.out.println("your email is invalid ");
-		enterYourEmail();
-		checkEmailValidation();
 	}
 
-	public String regexPassword = "[A-Za-z0-9-_+@%]";
+	public String regexPassword = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,12})";
 	public Pattern VALID_PASSWORD_REGEX = Pattern.compile(regexPassword);
-	Matcher matcherPassword = VALID_PASSWORD_REGEX.matcher("password");
-	boolean boolPassword = matcherPassword.matches();
 
-	public void enterYourPassword() {
+	public String enterYourPassword() {
 		System.out.print("Enter your password -- ");
-		password = in.nextLine();
-	}
-
-	public void checkPasswordValidation() {
+		String password = in.nextLine();
 		if (password.isEmpty()) {
 			System.out.println("your password is empty  ");
-			enterYourPassword();
-			checkPasswordValidation();
+			password = enterYourPassword();
 		} else {
 			if (password.length() < 8) {
 				System.out.println("Password is too short ");
-				enterYourPassword();
-				checkPasswordValidation();
+				password = enterYourPassword();
 			} else {
 				if (password.length() > 12) {
 					System.out.println("Password is too long ");
-					enterYourPassword();
-					checkPasswordValidation();
-				} else {
-					if (boolPassword) {
-						System.out.println();
-					}
-					System.out.println("Password  is not strong enough ");
-					enterYourPassword();
-					checkPasswordValidation();
+					password = enterYourPassword();
 				}
 			}
+		}
+		return password;
+	}
+
+	public void checkPasswordValidation(String password) {
+		Matcher matcherPassword = VALID_PASSWORD_REGEX.matcher(password);
+		boolean boolPassword = matcherPassword.matches();
+		if (boolPassword) {
+			System.out.println();
+		} else {
+			System.out.println("Password  is not strong enough ");
+			password = enterYourPassword();
+			checkPasswordValidation(password);
 		}
 	}
 }
