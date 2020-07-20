@@ -13,7 +13,7 @@ public class MyMainClass {
 			do {
 				email = start.enterYourEmail();
 				start.checkEmailValidation(email);
-				isEmailInDB = database.checkEmailInDatabase(email);
+				database.CheckUsernameExists(email);
 			} while (!isEmailInDB);
 
 			password = start.enterYourPassword();

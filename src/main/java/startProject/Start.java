@@ -18,11 +18,12 @@ public class Start {
 		return email;
 
 	}
+	
+	String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+	Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
 
 	public void checkEmailValidation(String email) {
-		String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
-		Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
-
+		
 		Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
 		boolean boolEmail = matcherEmail.matches();
 
