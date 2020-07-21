@@ -72,11 +72,10 @@ public class Database {
 
 	     try
 	     {
-
-	         Class.forName("com.postgresql.jdbc.Driver");
+	    	 Class.forName("org.postgresql.Driver");
 	         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres", "inchinch1992");
 
-	         PreparedStatement st = connection.prepareStatement("select * from Email-Password order by Email desc");
+	         PreparedStatement st = connection.prepareStatement("select * from LoginTable order by Email desc");
 	         ResultSet r1=st.executeQuery();
 	         String usernameCounter;
 	          if(r1.next()) 
