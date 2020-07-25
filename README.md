@@ -1,10 +1,10 @@
 # Login Validator Maven Poject - with PostgreSQL
 
-Data Preparation
+## Data Preparation
 
--- Database: myProjectDB
+* -- Database: myProjectDB
 
--- DROP DATABASE "myProjectDB";
+* -- DROP DATABASE "myProjectDB";
 
 CREATE DATABASE "myProjectDB"
     WITH 
@@ -24,11 +24,11 @@ CREATE TABLE public.users
 )
     
 
-#To Build the project run the following command
+## To Build the project run the following command
 
-mvn clean install
+* mvn clean install
 
-#To run the Login Validator run RunLoginValidator class as java application
+## To run the Login Validator run RunLoginValidator class as java application
 
 
 
