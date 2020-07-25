@@ -1,10 +1,10 @@
-package startProject;
+package am.itu.loginValidator.util;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Start {
+public class ValidatorUtil {
 
 	Scanner in = new Scanner(System.in);
 
@@ -22,17 +22,19 @@ public class Start {
 	String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
 	Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
 
-	public void checkEmailValidation(String email) {
+	public boolean checkEmailValidation(String email) {
 		
 		Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
 		boolean boolEmail = matcherEmail.matches();
 
 		if (boolEmail) {
+			return true;
 		} else {
 			System.out.println("your email is invalid ");
 			email = enterYourEmail();
 			checkEmailValidation(email);
 		}
+		return true;
 	}
 
 	public String regexPassword = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,12})";
@@ -58,15 +60,17 @@ public class Start {
 		return password;
 	}
 
-	public void checkPasswordValidation(String password) {
+	public boolean checkPasswordValidation(String password) {
 		Matcher matcherPassword = VALID_PASSWORD_REGEX.matcher(password);
 		boolean boolPassword = matcherPassword.matches();
 		if (boolPassword) {
 			System.out.println();
+			return true;
 		} else {
 			System.out.println("Password  is not strong enough ");
 			password = enterYourPassword();
 			checkPasswordValidation(password);
 		}
+		return true;
 	}
 }
