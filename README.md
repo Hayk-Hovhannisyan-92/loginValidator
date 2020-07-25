@@ -1,6 +1,6 @@
-# FirstIndependentlyProject
+# Login Validator Maven Poject - with PostgreSQL
 
-#Data Preparation
+Data Preparation
 
 -- Database: myProjectDB
 
